@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flynoo — Explore the World</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Pacifico&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="home.css" />
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar" class="sidebar">
+    <button id="closeSidebar" class="close-btn" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="#" data-nav="home">Home Page</a></li>
+      <li><a href="#" data-nav="gems">New Gems</a></li>
+      <li><a href="#" data-nav="shop">Shop Now</a></li>
+      <li><a href="#" data-nav="download">Download App</a></li>
+      <li><a href="#" data-nav="about">About Us</a></li>
+      <li><a href="#" data-nav="privacy">Privacy Policy</a></li>
+    </ul>
+  </nav>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
+    <div class="brand" id="brandBtn">
+
+      <span class="brand-text">FLYNOO</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-title">
+            <img src="assets/logo-square.png" alt="logo" class="hero-logo" />
+            <h1 class="title-text">FLYNOO</h1>
+          </div>
+
+          <div class="search-wrap">
+            <input id="searchInput" class="search-input" placeholder="Search tour & travel related..."
+              aria-label="Search tours" />
+            <button id="searchBtn" class="btn primary">Search</button>
+          </div>
+
+          <!-- Search results collapsible -->
+          <div id="searchResults" class="search-results hidden" aria-hidden="true">
+            <button id="closeResults" class="close-results" aria-label="Close results">✕</button>
+            <div id="resultsContent" class="results-content">
+              <!-- AI results will be injected here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right side: slider preview -->
+        <div class="hero-right">
+          <div class="slider" id="slider">
+            <div class="slide active"><img src="background.jpg" alt="slide 1" /></div>
+            <div class="slide"><img src="hiddencove.png" alt="slide 2" /></div>
+            <div class="slide"><img src="rajasthanfort.png" alt="slide 3" /></div>
+          </div>
+          <div class="slider-controls">
+            <button id="prevSlide" class="btn small">‹</button>
+            <button id="nextSlide" class="btn small">›</button>
+          </div>
+
+          <div class="cta-row">
+            <button id="letsExplore" class="btn large accent">Let's Explore</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AD PLACEHOLDER -->
+    <div class="ad ad-inline"> <!-- Insert ad script/snippet here -->Advertisement</div>
+
+    <!-- NEW GEMS -->
+    <section class="section" id="gems">
+      <h2>New Gems</h2>
+      <div class="gems-grid">
+        <article class="gem-card">
+          <img src="rajasthanfort.png" alt="Gem 1" />
+          <h3>Rajasthan Sunset Fort</h3>
+          <a class="btn outline small" href="gems/gem1.html">View</a>
+        </article>
+        <article class="gem-card">
+          <img src="hiddencove.png" alt="Gem 2" />
+          <h3>Hidden Beach Cove</h3>
+          <a class="btn outline small" href="gems/gem2.html">View</a>
+        </article>
+        <article class="gem-card">
+          <img src="ancientmountain.png" alt="Gem 3" />
+          <h3>Ancient Mountain Trail</h3>
+          <a class="btn outline small" href="gems/gem3.html">View</a>
+        </article>
+         <article class="gem-card">
+          <img src="ancientmountain.png" alt="Gem 4" />
+          <h3>baidhyanath dham</h3>
+          <a class="btn outline small" href="gems/gem3.html">View</a>
+        </article>
+      </div>
+      <div class="center">
+        <a class="btn" href="gems/index.html">View More</a>
+      </div>
+    </section>
+
+    <!-- AD PLACEHOLDER -->
+    <div class="ad ad-inline"> <!-- Insert ad script/snippet here -->Sponsored</div>
+
+    <!-- SHOP -->
+    <section class="section" id="shop">
+      <h2>Shop Best Tour-Related Things</h2>
+      <p class="muted">Affiliate picks from partners like Amazon / Flipkart</p>
+
+      <div class="shop-grid">
+        <article class="product">
+          <img src="assets/prod1.jpg" alt="Product 1" />
+          <h3>Travel Backpack</h3>
+          <p>Durable & roomy — perfect for weekend trips.</p>
+          <a class="btn small" href="https://www.example.com/affiliate1" target="_blank" rel="noopener">Shop</a>
+        </article>
+
+        <article class="product">
+          <img src="assets/prod2.jpg" alt="Product 2" />
+          <h3>Portable Charger</h3>
+          <p>High-capacity powerbank for long journeys.</p>
+          <a class="btn small" href="https://www.example.com/affiliate2" target="_blank" rel="noopener">Shop</a>
+        </article>
+
+        <article class="product">
+          <img src="assets/prod3.jpg" alt="Product 3" />
+          <h3>Travel Camera</h3>
+          <p>Compact action camera to capture every moment.</p>
+          <a class="btn small" href="https://www.example.com/affiliate3" target="_blank" rel="noopener">Shop</a>
+        </article>
+
+        <article class="product">
+          <img src="assets/prod4.jpg" alt="Product 4" />
+          <h3>Camping Kit</h3>
+          <p>Essential tools for overnight adventure.</p>
+          <a class="btn small" href="https://www.example.com/affiliate4" target="_blank" rel="noopener">Shop</a>
+        </article>
+      </div>
+
+      <div class="center">
+        <a class="btn" href="shop/index.html">Open Shop</a>
+      </div>
+    </section>
+
+    <!-- PROMO VIDEO -->
+    <section class="section video-section">
+      <h2>Watch Our Promo</h2>
+      <div class="video-wrapper">
+        <!-- Replace the iframe src with your YouTube video id -->
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Flynoo Promo"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD CTA -->
+    <section class="section cta">
+      <h2>Download Our App</h2>
+      <p>Be among the first to try the Flynoo app. Get exclusive founder rewards.</p>
+      <a class="btn large accent" href="https://example.com/download">Download App</a>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq">
+      <h2>Why Flynoo?</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">What makes Flynoo different?</button>
+          <div class="faq-a hidden">Imagine traveling anywhere without worrying about planning, guides, or safety.
+            Flynoo is your personal AI tour guide & world explorer, ready to guide you anytime, anywhere – absolutely
+            free!
+            ✨ What Flynoo will do for you:
+
+            AI Tour Guide: Get the best information about any place you visit, with 360° views, stunning photos, maps,
+            and must-visit spots.
+
+            Travel Planning: From transportation to hotels to food – Flynoo gives you the top recommendations.
+
+            Emergency Help: In any emergency, Flynoo will connect you to the right help instantly.
+
+            Earn FlyCoins: The more you explore & book via Flynoo, the more FlyCoins you earn – redeem them for real
+            money or discounts.
+
+            Beyond Travel: More exciting features coming soon, making Flynoo your everyday lifestyle companion.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is the app free?</button>
+          <div class="faq-a hidden">Yes — basic features are free; premium features will be optional.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How do I earn FlyCoins?</button>
+          <div class="faq-a hidden">Daily check-ins, sharing trips, and successful referrals earn FlyCoins.  coming soooonnn.....</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP HERO -->
+    <section class="section map-section">
+      <div id="map" style="height: 400px; width: 100%;"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="socials">
+        <a href="https://www.instagram.com/_flynoo/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+        <a href="https://youtube.com/YOUR_CHANNEL" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
+      </div>
+      <div class="support">Email: <a href="mailto:support@flynoo.com">support@flynoo.com</a></div>
+      <div class="credits">Founder: Sandeep Mahto • © <span id="year"></span> Flynoo</div>
+    </footer>
+  </main>
+
+  <script src="home.js"></script>
+</body>
+
+</html>
