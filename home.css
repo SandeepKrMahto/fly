@@ -60,57 +60,82 @@ body {
   letter-spacing: 2px
 }
 
-/* SIDEBAR */
+
+/* Sidebar */
 .sidebar {
   position: fixed;
-  left: -320px;
+  left: 0;
   top: 0;
   height: 100%;
-  width: 320px;
-  background: linear-gradient(180deg, #08101a, #0e1820);
-  padding: 32px;
-  transition: left .35s ease;
-  z-index: 50;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6)
+  width: 250px; /* sidebar width */
+  background: #0a0a0a;
+  color: var(--white, #fff);
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
+  z-index: 1100; /* thoda upar rakha map se */
+  overflow-y: auto;
 }
 
+/* Sidebar open hote hi visible */
 .sidebar.open {
-  left: 0
+  transform: translateX(0);
 }
 
+/* Map container */
+.map-container {
+  transition: margin-left 0.3s ease-in-out;
+  height: 100vh;   /* map full screen dikhne ke liye */
+  width: 100%;
+}
+
+/* Jab sidebar open ho, map adjust ho */
+.sidebar.open ~ .map-container {
+  margin-left: 250px; /* sidebar width jitna shift */
+}
+
+/* Close button */
 .sidebar .close-btn {
   background: transparent;
   border: 0;
-  color: var(--white);
+  color: var(--white, #fff);
   font-size: 20px;
   position: absolute;
   right: 12px;
   top: 12px;
-  cursor: pointer
+  cursor: pointer;
 }
 
+/* Sidebar list */
 .sidebar ul {
   list-style: none;
   padding: 0;
-  margin: 40px 0 0
+  margin: 40px 0 0;
 }
 
 .sidebar li {
-  margin: 14px 0
+  margin: 14px 0;
 }
 
 .sidebar a {
-  color: var(--white);
+  color: var(--white, #fff);
   text-decoration: none;
   font-weight: 600;
   display: block;
   padding: 8px 6px;
-  border-radius: 6px
+  border-radius: 6px;
+  transition: background 0.2s;
 }
 
 .sidebar a:hover {
-  background: rgba(255, 255, 255, 0.04)
+  background: rgba(255, 255, 255, 0.08);
 }
+
+/* ✅ Leaflet zoom buttons ko right side le aao */
+.leaflet-control-container .leaflet-top.leaflet-left {
+  left: auto !important;
+  right: 10px !important;
+}
+
 
 /* HERO */
 .hero {
@@ -119,28 +144,41 @@ body {
   align-items: center;
   justify-content: center;
   padding: 80px 24px 40px 24px;
-  background: radial-gradient(ellipse at 0% 10%, rgba(255, 208, 90, 0.06), transparent 20%), url('assets/hero-bg.jpg') no-repeat center/cover;
-  background-color: #02101a;
-  margin-top: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 1s ease-in-out;
 }
 
-.hero-content {
-  width: 1200px;
-  max-width: calc(100% - 40px);
+.hero-center {
   display: flex;
-  gap: 30px;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between
+  text-align: center;
 }
 
-.hero-left {
-  flex: 1;
-  min-width: 280px
+.search-input.white-bg {
+  background: #ffffff;
+  color: #000;
 }
 
-.hero-right {
-  width: 420px;
-  max-width: 46%
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-logo {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.title-text {
+  font-size: 60px;
+  margin: 0;
 }
 
 /* title & logo */
@@ -159,7 +197,7 @@ body {
 }
 
 .title-text {
-  font-size: 48px;
+  font-size: 80px;
   margin: 0;
   -webkit-text-stroke: 2px black
 }
@@ -174,7 +212,7 @@ body {
 
 .search-input {
   flex: 1;
-  padding: 14px 16px;
+  padding: 20px 22px;
   border-radius: 12px;
   border: 0;
   background: rgba(255, 255, 255, 0.05);
@@ -184,7 +222,7 @@ body {
 }
 
 .btn {
-  padding: 10px 14px;
+  padding: 13px 17px;
   border-radius: 10px;
   border: 0;
   background: rgba(255, 255, 255, 0.06);
@@ -193,7 +231,7 @@ body {
 }
 
 .btn.small {
-  padding: 6px 10px
+  padding: 9px 13px
 }
 
 .btn.primary {
@@ -240,43 +278,69 @@ body {
 }
 
 /* slider */
-.slider {
+#gems {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.gems-slider {
   position: relative;
-  border-radius: 14px;
   overflow: hidden;
-  background: #000;
-  height: 260px
+  margin: 20px 0;
 }
 
-.slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity .6s ease
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block
-}
-
-.slide.active {
-  opacity: 1
-}
-
-.slider-controls {
+.gems-track {
   display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 10px
+  gap: 20px;
+  transition: transform 0.6s ease-in-out;
 }
 
-.cta-row {
-  margin-top: 14px;
-  text-align: center
+.gem-card {
+  min-width: 260px;
+  background: #111;
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  text-align: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
+
+.gem-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.gem-card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+/* Arrows */
+.gems-slider .prev,
+.gems-slider .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.gems-slider .prev { left: 10px; }
+.gems-slider .next { right: 10px; }
+
+.gems-slider .prev:hover,
+.gems-slider .next:hover {
+  background: rgba(255,255,255,0.3);
+}
+
 
 /* section common */
 .section {
@@ -322,26 +386,53 @@ body {
   margin-top: 18px
 }
 
-/* shop */
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+/* shop slider */
+.shop-slider {
+  position: relative;
+  overflow: hidden;
+  margin-top: 18px;
+}
+
+.shop-track {
+  display: flex;
   gap: 18px;
-  margin-top: 18px
+  transition: transform 0.4s ease;
 }
 
 .product {
   background: var(--card);
   padding: 12px;
-  border-radius: 12px
+  border-radius: 12px;
+  flex: 1;
+  min-width: 220px;
+  max-width: 300px;
+  text-align: center;
 }
 
 .product img {
   width: 100%;
   height: 160px;
   object-fit: cover;
-  border-radius: 8px
+  border-radius: 8px;
 }
+
+.shop-slider button.prev,
+.shop-slider button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 5;
+}
+.shop-slider button.prev { left: 6px; }
+.shop-slider button.next { right: 6px; }
+
 
 /* video */
 .video-wrapper {
